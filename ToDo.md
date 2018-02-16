@@ -3,7 +3,7 @@
 ## Tasks:
 
 ### Create the basic VS files
- * [ ] Start with a vey simple 'Hello World!' sketch
+ * [X] Start with a vey simple 'Hello World!' sketch
  * [ ] Add a class for a player
  * [ ] Add a class for an Enemy
  * [ ] Make the Enemy class be a parent for all later Enemies

@@ -86,22 +86,66 @@ public:
 			do
 			{
 				cout << "What class would you like to be?" << endl;
-				cout << "To see classes, type \'idk\'" << endl;
+				cout << "Possible classes: ";
+				vector<string> temp = player->get_possible_classes();
+				for (int i = 0; i < temp.size(); i++)
+				{
+					cout << temp[i] << " ";
+				}
+				cout << endl;
 				cout << "Class name: ";
 
 				getline(cin, responce);
 
-				if (responce == "idk")
+
+				for (int i = 0; i < responce.size(); i++)
+				{
+					responce[i] = toupper(responce[i]);
+				}
+
+				if (contains(player->get_possible_classes(), responce))
 				{
 
+					player->set_class(responce);
+
+					cout << "You entered \'" << responce << "\' as your class." << endl;
+					player->show_stats();
+					cout << "Is this correct? (\'Y\' for yes, \'N\' for no.) --> ";
+
+					getline(cin, responce);
+
+					if (responce == "Y" || responce == "y")
+					{
+						cout << "Your class is now " << player->get_class() << endl;
+						selection_confirmed = true;
+					}
+
+				}
+				else
+				{
+					cout << "Class not reconized." << endl;
 				}
 
 			} while (selection_confirmed == false);
+
+			selection_confirmed = false;
 		}
 	}
 
 	void startGame()
 	{
 
+	}
+
+	bool contains(vector<string> vect, string item)
+	{
+		for (int i = 0; i < vect.size(); i++)
+		{
+			if (item == vect[i])
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 };

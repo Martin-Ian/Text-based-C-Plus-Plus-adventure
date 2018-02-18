@@ -1,5 +1,7 @@
 #pragma once
+#include "Character.h"
 #include "Player.h"
+#include "Battle.h"
 
 using namespace std;
 class GameState
@@ -134,7 +136,9 @@ public:
 
 	void startGame()
 	{
-
+		Battle battles;
+		Enemy* enemy = new Enemy();
+		battles.battle(player, enemy);
 	}
 
 	bool contains(vector<string> vect, string item)

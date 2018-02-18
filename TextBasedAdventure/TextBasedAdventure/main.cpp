@@ -6,8 +6,11 @@
 #include <istream>
 #include <string>
 #include <vector>
+#include "Character.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "GameState.h"
+#include "Battle.h"
 
 using namespace std;
 

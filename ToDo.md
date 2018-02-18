@@ -5,12 +5,12 @@
 ### Create the basic VS files
  * [X] Start with a vey simple 'Hello World!' sketch
  * [X] Add a class for a player
- * [ ] Add a class for an Enemy
+ * [X] Add a class for an Enemy
  * [ ] Make the Enemy class be a parent for all later Enemies
 
 ### Create Basic game flow
  * [X] Allow for user input
- * [ ] Create battle function
+ * [X] Create battle function
  * [ ] Create 'place' class for different places
  * [ ] Create overworld functionality
   

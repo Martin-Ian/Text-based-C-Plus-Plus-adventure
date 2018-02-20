@@ -1,7 +1,9 @@
 #pragma once
+
 #include <string>
 #include <vector>
 #include <iostream>
+#include "Moves.h"
 
 using namespace std;
 
@@ -18,6 +20,8 @@ private:
 	int _mana;
 	float _speed;
 	float _counter;
+	vector<string> status;
+	vector<Moves> _moves = { Strike(), Strike(), Strike(), Strike() };
 
 public:
 	Character()
@@ -139,4 +143,10 @@ public:
 	{
 		_current_HP -= value;
 	}
+
+	vector<Moves> get_moves()
+	{
+		return _moves;
+	}
+
 };

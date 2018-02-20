@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "Character.h"
+#include "Moves.h"
 
 using namespace std;
 
@@ -47,6 +48,7 @@ public:
 			set_magic_defence(6);
 			set_mana(1);
 			set_speed(4);
+			//add_move(Strike());
 		}
 		else if (_class == "RANGER")
 		{
@@ -57,6 +59,7 @@ public:
 			set_magic_defence(5);
 			set_mana(4);
 			set_speed(7);
+			//add_move(Strike());
 		}
 		else if (_class == "MAGE")
 		{
@@ -67,6 +70,7 @@ public:
 			set_magic_defence(7);
 			set_mana(10);
 			set_speed(4);
+			//add_move(Strike());
 		}
 	}
 
@@ -85,4 +89,5 @@ public:
 	{
 		return possible_classes;
 	}
+
 };

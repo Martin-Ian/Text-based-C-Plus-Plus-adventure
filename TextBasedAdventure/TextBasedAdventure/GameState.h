@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "Player.h"
 #include "Battle.h"
+#include "Moves.h"
 
 using namespace std;
 class GameState
@@ -43,7 +44,7 @@ public:
 
 				if (responce == "Y" || responce == "y")
 				{
-					cout << "Selection Confirmed." << endl;
+					system("CLS");
 					selection_confirmed = true;
 				}
 
@@ -59,7 +60,6 @@ public:
 		{
 			selection_confirmed = false;
 			player = new Player();
-
 			cout << "Welcome to The Adventure!" << endl;
 
 			do
@@ -118,7 +118,7 @@ public:
 
 					if (responce == "Y" || responce == "y")
 					{
-						cout << "Your class is now " << player->get_class() << endl;
+						system("CLS");
 						selection_confirmed = true;
 					}
 
@@ -137,17 +137,20 @@ public:
 	void startGame()
 	{
 		Battle battles;
-		Enemy* enemy = new Enemy();
+		Enemy* enemy = new Snail();
 		battles.battle(player, enemy);
 	}
 
 	bool contains(vector<string> vect, string item)
 	{
-		for (int i = 0; i < vect.size(); i++)
+		if (vect.empty() == false)
 		{
-			if (item == vect[i])
+			for (int i = 0; i < vect.size(); i++)
 			{
-				return true;
+				if (item == vect[i])
+				{
+					return true;
+				}
 			}
 		}
 		return false;

@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "GameState.h"
 #include "Battle.h"
+#include "Moves.h"
 
 using namespace std;
 

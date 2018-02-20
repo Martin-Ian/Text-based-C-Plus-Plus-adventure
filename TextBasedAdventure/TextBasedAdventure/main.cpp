@@ -17,6 +17,8 @@ using namespace std;
 
 int main()
 {
+	srand(time(NULL));
+
 	//GameState comtrols the game making main nice and clean
 	GameState* game = new GameState();
 

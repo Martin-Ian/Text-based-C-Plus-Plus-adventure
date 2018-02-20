@@ -3,9 +3,7 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
-//#include "Character.h"
-//#include "Player.h"
-//#include "Enemy.h"
+#include <time.h>
 
 using namespace std;
 
@@ -16,6 +14,7 @@ protected:
 	int _cost;
 	int _type;
 	float _power;
+	int _crit;
 
 public:
 
@@ -25,11 +24,22 @@ public:
 		_cost = 0;
 		_type = 0;
 		_power = 1;
+		_crit = 1;
+	}
+
+	int get_crit()
+	{
+		return _crit;
 	}
 
 	void set_name(string name)
 	{
 		_name = name;
+	}
+
+	bool is_crit()
+	{
+		return (rand() % 100) < _crit;
 	}
 
 	string get_name()
@@ -64,6 +74,7 @@ public:
 		_cost = 0;
 		_type = 0;
 		_power = 0.75;
+		_crit = 10;
 	}
 };
 
@@ -77,5 +88,48 @@ public:
 		_cost = 1;
 		_type = 1;
 		_power = 0.75;
+		_crit = 10;
+	}
+};
+
+class Heal : public Moves
+{
+public:
+	Heal()
+	{
+		Moves();
+		_name = "Heal";
+		_cost = 2;
+		_type = 1;
+		_power = 2;
+		_crit = 0;
+	}
+};
+
+class Mini_Heal : public Moves
+{
+public:
+	Mini_Heal()
+	{
+		Moves();
+		_name = "Mini Heal";
+		_cost = 2;
+		_type = 1;
+		_power = 1.5;
+		_crit = 0;
+	}
+};
+
+class Restore : public Moves
+{
+public:
+	Restore()
+	{
+		Moves();
+		_name = "Restore Mana";
+		_cost = 0;
+		_type = 1;
+		_power = 1;
+		_crit = 0;
 	}
 };

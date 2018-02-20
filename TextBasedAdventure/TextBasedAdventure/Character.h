@@ -18,10 +18,11 @@ private:
 	int _magic;
 	int _magic_defence;
 	int _mana;
+	int _max_mana;
 	float _speed;
 	float _counter;
 	vector<string> status;
-	vector<Moves> _moves = { Strike(), Magic_Bolt() };
+	vector<Moves> _moves = { Strike(), Magic_Bolt(), Heal(), Restore() };
 
 public:
 	Character()
@@ -36,6 +37,16 @@ public:
 		_name = "Unknown";
 		_speed = 1;
 		_counter = 0;
+	}
+
+	void heal(int amount)
+	{
+		_current_HP += amount;
+		if (_current_HP > _max_HP)
+		{
+			cout << "HP is maxxed!" << endl;
+			_current_HP = _max_HP;
+		}
 	}
 
 	void set_name(string name)
@@ -109,8 +120,23 @@ public:
 		return _mana;
 	}
 
+	void add_mana(int amount)
+	{
+		_mana += amount;
+		if (_mana > _max_mana)
+		{
+			_mana = _max_mana;
+		}
+	}
+
+	int get_max_mana()
+	{
+		return _max_mana;
+	}
+
 	void set_mana(int value)
 	{
+		_max_mana = value;
 		_mana = value;
 	}
 

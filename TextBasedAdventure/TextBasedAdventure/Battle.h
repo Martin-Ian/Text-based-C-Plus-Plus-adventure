@@ -28,7 +28,6 @@ public:
 			{
 				the_player->reset_counter();
 				player_move(the_player, the_enemy);
-				cout << the_enemy->get_name() << "\'s HP: " << the_enemy->get_HP() << "/" << the_enemy->get_max_HP() << endl;
 			}
 
 			if (the_enemy->get_counter() >= 100 && the_enemy->get_HP() > 0)
@@ -36,10 +35,10 @@ public:
 				the_enemy->reset_counter();
 				vector<Moves> enemy_moves = the_enemy->get_moves();
 				cast(enemy_moves[0], the_enemy, the_player);
-				cout << the_player->get_name() << "\'s HP: " << the_player->get_HP() << "/" << the_player->get_max_HP() << endl;
 			}
 		}
-		cout << "You have " << the_player->get_HP() << " health left." << endl;
+		cout << the_player->get_name() << "\'s HP: " << the_player->get_HP() << "/" << the_player->get_max_HP() << endl;
+		cout << the_enemy->get_name() << "\'s HP: " << the_enemy->get_HP() << "/" << the_enemy->get_max_HP() << endl;
 	}
 	
 	void player_move(Player* the_player, Enemy* the_enemy)
@@ -68,6 +67,9 @@ public:
 			}
 			else
 			{
+				system("CLS");
+				cout << the_player->get_name() << "\'s HP: " << the_player->get_HP() << "/" << the_player->get_max_HP() << endl;
+				cout << the_enemy->get_name() << "\'s HP: " << the_enemy->get_HP() << "/" << the_enemy->get_max_HP() << endl;
 				confirmed = true;
 				cast(temp[index], the_player, the_enemy);
 			}
@@ -103,11 +105,27 @@ public:
 	{
 		if (the_move.get_name() == "Strike")
 		{
-			float ratio = (1.0 * user->get_strength()) / (1.0 * target->get_defence());
-			int damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * user->get_strength());
-			if (damage < 1)
+			int damage;
+			if (the_move.is_crit())
 			{
-				damage = 1;
+				cout << "Critical hit!" << endl;
+				float ratio = (1.0 * user->get_strength()) / (1.0 * target->get_defence()) + 1.5;
+				damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * (the_move.get_power() + 1.0)) * user->get_strength());
+				damage += rand() % 3 - 1;
+				if (damage < 2)
+				{
+					damage = 2;
+				}
+			}
+			else
+			{
+				float ratio = (1.0 * user->get_strength()) / (1.0 * target->get_defence());
+				damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * user->get_strength());
+				damage += rand() % 3 - 1;
+				if (damage < 1)
+				{
+					damage = 1;
+				}
 			}
 			cout << user->get_name() << " strikes " << target->get_name() << " for " << damage << " damage" << endl;
 			target->take_damage(damage);
@@ -115,15 +133,51 @@ public:
 		else if (the_move.get_name() == "Magic Bolt")
 		{
 			user->use_mana(the_move.get_cost());
-			float ratio = (1.0 * user->get_magic()) / (1.0 * target->get_magic_defence());
-			int damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * user->get_magic());
-			if (damage < 1)
+			int damage;
+			if (the_move.is_crit())
 			{
-				damage = 1;
+				cout << "Critical hit!" << endl;
+				float ratio = (1.0 * user->get_magic()) / (1.0 * target->get_magic_defence()) + 1.5;
+				damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * (the_move.get_power() + 1.0)) * user->get_magic());
+				damage += rand() % 3 - 1;
+				if (damage < 2)
+				{
+					damage = 2;
+				}
+			}
+			else
+			{
+				float ratio = (1.0 * user->get_magic()) / (1.0 * target->get_magic_defence());
+				damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * user->get_magic());
+				damage += rand() % 3 - 1;
+				if (damage < 1)
+				{
+					damage = 1;
+				}
 			}
 			cout << user->get_name() << " shoots a Bolt of Magic at " << target->get_name() << " for " << damage << " damage" << endl;
 			cout << user->get_name() << " has " << user->get_mana() << " mana left." << endl;
 			target->take_damage(damage);
+		}
+		else if (the_move.get_name() == "Heal" || the_move.get_name() == "Mini Heal")
+		{
+			user->use_mana(the_move.get_cost());
+			float ratio = 1.0;
+			int damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * ((user->get_magic() * 1.5) + user->get_strength()));
+			damage += rand() % 3 - 1;
+			if (damage < 1)
+			{
+				damage = 1;
+			}
+			cout << user->get_name() << " Heals for " << damage << " health" << endl;
+			cout << user->get_name() << " has " << user->get_mana() << " mana left." << endl;
+			user->heal(damage);
+		}
+		else if (the_move.get_name() == "Restore Mana")
+		{
+			cout << user->get_name() << " regains 1 mana" << endl;
+			user->add_mana(1);
+			cout << user->get_name() << " has " << user->get_mana() << " mana left." << endl;
 		}
 	}
 

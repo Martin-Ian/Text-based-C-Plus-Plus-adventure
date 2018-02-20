@@ -6,7 +6,7 @@
  * [X] Start with a vey simple 'Hello World!' sketch
  * [X] Add a class for a player
  * [X] Add a class for an Enemy
- * [ ] Make the Enemy class be a parent for all later Enemies
+ * [X] Make the Enemy class be a parent for all later Enemies
 
 ### Create Basic game flow
  * [X] Allow for user input
@@ -20,7 +20,7 @@
  * [ ] Create command dictionary [???]
   
 ### Game design
- * [ ] Create different Enemies
+ * [X] Create different Enemies
  * [ ] Add leveling system
  * [ ] Add characters to talk to
  * [ ] Clean up code as much as possible

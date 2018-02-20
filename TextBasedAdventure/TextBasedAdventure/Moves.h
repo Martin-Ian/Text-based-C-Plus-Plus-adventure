@@ -15,6 +15,7 @@ protected:
 	string _name;
 	int _cost;
 	int _type;
+	float _power;
 
 public:
 
@@ -23,6 +24,7 @@ public:
 		_name = "UNDEFINED (This is a bug, please report if you see this)";
 		_cost = 0;
 		_type = 0;
+		_power = 1;
 	}
 
 	void set_name(string name)
@@ -45,8 +47,12 @@ public:
 		return _type;
 	}
 
-};
+	float get_power()
+	{
+		return _power;
+	}
 
+};
 
 class Strike : public Moves
 {
@@ -57,5 +63,19 @@ public:
 		_name = "Strike";
 		_cost = 0;
 		_type = 0;
+		_power = 0.75;
+	}
+};
+
+class Magic_Bolt : public Moves
+{
+public:
+	Magic_Bolt()
+	{
+		Moves();
+		_name = "Magic Bolt";
+		_cost = 1;
+		_type = 1;
+		_power = 0.75;
 	}
 };

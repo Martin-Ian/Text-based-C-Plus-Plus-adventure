@@ -52,7 +52,7 @@ public:
 			cout << "What would you like to do?" << endl;
 			for (int i = 0; i < temp.size(); i++)
 			{
-				cout << i << ": " << temp[i].get_name() << endl;
+				cout << (i+1) << ": " << temp[i].get_name() << endl;
 			}
 			getline(cin, move);
 
@@ -61,6 +61,10 @@ public:
 			if (index == -1 || index >= temp.size())
 			{
 				cout << "Invalid input." << endl;
+			}
+			else if (the_player->get_mana() < temp[index].get_cost())
+			{
+				cout << "Not enough mana." << endl;
 			}
 			else
 			{
@@ -73,19 +77,19 @@ public:
 	
 	int stoint(string value)
 	{
-		if (value == "0")
+		if (value == "1")
 		{
 			return 0;
 		}
-		else if (value == "1")
+		else if (value == "2")
 		{
 			return 1;
 		}
-		else if (value == "2")
+		else if (value == "3")
 		{
 			return 2;
 		}
-		else if (value == "3")
+		else if (value == "4")
 		{
 			return 3;
 		}
@@ -99,8 +103,26 @@ public:
 	{
 		if (the_move.get_name() == "Strike")
 		{
-			int damage = user->get_strength();
+			float ratio = (1.0 * user->get_strength()) / (1.0 * target->get_defence());
+			int damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * user->get_strength());
+			if (damage < 1)
+			{
+				damage = 1;
+			}
 			cout << user->get_name() << " strikes " << target->get_name() << " for " << damage << " damage" << endl;
+			target->take_damage(damage);
+		}
+		else if (the_move.get_name() == "Magic Bolt")
+		{
+			user->use_mana(the_move.get_cost());
+			float ratio = (1.0 * user->get_magic()) / (1.0 * target->get_magic_defence());
+			int damage = floor(((-1 / ((2 * ratio * ratio) + ratio + 1) + 1) * the_move.get_power()) * user->get_magic());
+			if (damage < 1)
+			{
+				damage = 1;
+			}
+			cout << user->get_name() << " shoots a Bolt of Magic at " << target->get_name() << " for " << damage << " damage" << endl;
+			cout << user->get_name() << " has " << user->get_mana() << " mana left." << endl;
 			target->take_damage(damage);
 		}
 	}

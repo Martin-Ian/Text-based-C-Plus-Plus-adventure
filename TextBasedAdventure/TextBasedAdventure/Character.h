@@ -21,7 +21,7 @@ private:
 	float _speed;
 	float _counter;
 	vector<string> status;
-	vector<Moves> _moves = { Strike(), Strike(), Strike(), Strike() };
+	vector<Moves> _moves = { Strike(), Magic_Bolt() };
 
 public:
 	Character()
@@ -112,6 +112,11 @@ public:
 	void set_mana(int value)
 	{
 		_mana = value;
+	}
+
+	void use_mana(int amount)
+	{
+		_mana = _mana - amount;
 	}
 
 	void set_speed(float value)

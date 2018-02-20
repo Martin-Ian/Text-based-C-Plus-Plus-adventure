@@ -46,7 +46,7 @@ public:
 			set_defence(7);
 			set_magic(1);
 			set_magic_defence(6);
-			set_mana(1);
+			set_mana(2);
 			set_speed(4);
 			//add_move(Strike());
 		}
@@ -57,7 +57,7 @@ public:
 			set_defence(5);
 			set_magic(4);
 			set_magic_defence(5);
-			set_mana(4);
+			set_mana(5);
 			set_speed(7);
 			//add_move(Strike());
 		}
@@ -68,7 +68,7 @@ public:
 			set_defence(4);
 			set_magic(8);
 			set_magic_defence(7);
-			set_mana(10);
+			set_mana(12);
 			set_speed(4);
 			//add_move(Strike());
 		}

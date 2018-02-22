@@ -6,6 +6,7 @@
 #include <istream>
 #include <string>
 #include <vector>
+#include <cmath>
 #include "Character.h"
 #include "Player.h"
 #include "Enemy.h"

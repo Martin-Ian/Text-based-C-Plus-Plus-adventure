@@ -46,6 +46,8 @@ public:
 		string move;
 		bool confirmed = false;
 		vector<Moves> temp = the_player->get_moves();
+		cout << the_player->get_name() << "\'s HP: " << the_player->get_HP() << "/" << the_player->get_max_HP() << endl;
+		cout << the_enemy->get_name() << "\'s HP: " << the_enemy->get_HP() << "/" << the_enemy->get_max_HP() << endl;
 		while (confirmed == false)
 		{
 			cout << "What would you like to do?" << endl;
@@ -68,8 +70,6 @@ public:
 			else
 			{
 				system("CLS");
-				cout << the_player->get_name() << "\'s HP: " << the_player->get_HP() << "/" << the_player->get_max_HP() << endl;
-				cout << the_enemy->get_name() << "\'s HP: " << the_enemy->get_HP() << "/" << the_enemy->get_max_HP() << endl;
 				confirmed = true;
 				cast(temp[index], the_player, the_enemy);
 			}

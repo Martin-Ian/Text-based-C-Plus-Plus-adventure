@@ -139,6 +139,12 @@ public:
 		Battle battles;
 		Enemy* enemy = new Snail();
 		battles.battle(player, enemy);
+		delete enemy;
+		player->reset_mana();
+		system("PAUSE");
+		system("CLS");
+		enemy = new Beetle();
+		battles.battle(player, enemy);
 	}
 
 	bool contains(vector<string> vect, string item)

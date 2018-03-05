@@ -140,6 +140,11 @@ public:
 		_mana = value;
 	}
 
+	void reset_mana()
+	{
+		_mana = _max_mana;
+	}
+
 	void use_mana(int amount)
 	{
 		_mana = _mana - amount;
